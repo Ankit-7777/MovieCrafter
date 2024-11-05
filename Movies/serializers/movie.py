@@ -31,3 +31,8 @@ class MovieSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("The release date cannot be in the past.")
         return attrs
 
+    def validate(self, attrs):
+        if 'rating' in attrs and (attrs['rating'] < 0.0 or attrs['rating'] > 7.0):
+            raise serializers.ValidationError("Rating must be between 0.0 and 7.0.")
+        return attrs
+
