@@ -76,7 +76,7 @@ class UserAuthView(APIView):
             token = get_tokens_for_user(user)
             return Response({'message': 'Registration successful.', 'token': token, 'user_detail': UserProfileSerializer(user).data}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
- 
+
 class UserUpdateView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
@@ -96,8 +96,7 @@ class UserUpdateView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-    
-    
+  
 class UserChangePasswordView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
@@ -128,7 +127,6 @@ class UserPasswordResetView(APIView):
 def login_view(request):
     return render(request, 'registration/login.html')
 
-
 def registration_view(request):
 
     if request.method == 'POST':
@@ -142,8 +140,7 @@ def registration_view(request):
     return render(request, 'registration/register.html', {
         'form': form
     })
-    
-    
+   
 def index(request):
     return render(request, 'index.html')
 
